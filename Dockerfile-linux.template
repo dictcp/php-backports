@@ -182,6 +182,11 @@ ENV GPG_KEYS {{
 			"39B6 4134 3D8C 104B 2B14  6DC3 F9C3 9DC0 B969 8544", # ramsey
 			"F1F6 9223 8FBC 1666 E5A5  CCD4 199F 9DFE F6FF BAFD"  # patrickallaert
 		],
+
+		"7.4": [
+			"5A52880781F755608BF815FC910DEB46F53EA312",
+			"4267 0A7F E4D0 441C 8E46  3234 9E4F DC07 4A4E F02D"
+		],
 	}[env.version | rtrimstr("-rc")] // error("missing GPG keys for " + env.version)
 	| map(gsub(" "; ""))
 	| join(" ")
