@@ -391,7 +391,7 @@ RUN set -eux; \
 		--with-fpm-group=www-data \
 {{ ) elif env.variant == "zts" then ( -}}
 		\
-		--enable-zts \
+		--enable-maintainer-zts \
 # https://externals.io/message/118859
 		--disable-zend-signals \
 {{ if [ "8.1", "8.2" ] | index(env.version | rtrimstr("-rc")) then ( -}}
