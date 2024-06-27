@@ -1,24 +1,24 @@
 {
-  "7.4": {
-    "ascUrl": "https://www.php.net/distributions/php-7.4.33.tar.xz.asc",
-    "sha256": "924846abf93bc613815c55dd3f5809377813ac62a9ec4eb3778675b82a27b927",
-    "url": "https://www.php.net/distributions/php-7.4.33.tar.xz",
+  "7.2": {
+    "url": "https://github.com/remicollet/php-src-security/archive/refs/heads/PHP-7.2-Security-backports.tar.gz",
     "variants": [
-      "bookworm/cli",
-      "bookworm/apache",
-      "bookworm/fpm",
-      "bookworm/zts",
       "bullseye/cli",
       "bullseye/apache",
       "bullseye/fpm",
-      "bullseye/zts",
-      "alpine3.20/cli",
-      "alpine3.20/fpm",
-      "alpine3.20/zts",
-      "alpine3.19/cli",
-      "alpine3.19/fpm",
-      "alpine3.19/zts"
+      "bullseye/zts"
+    ],
+    "version": "7.2.34"
+  },
+  "7.2-rc": null,
+  "7.4": {
+    "url": "https://github.com/remicollet/php-src-security/archive/refs/heads/PHP-7.4-security-backports.tar.gz",
+    "variants": [
+      "bullseye/cli",
+      "bullseye/apache",
+      "bullseye/fpm",
+      "bullseye/zts"
     ],
     "version": "7.4.33"
-  }
+  },
+  "7.4-rc": null
 }

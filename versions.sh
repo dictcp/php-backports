@@ -85,10 +85,7 @@ for version in "${versions[@]}"; do
 	variants='[]'
 	# order here controls the order of the library/ file
 	for suite in \
-		bookworm \
 		bullseye \
-		alpine3.20 \
-		alpine3.19 \
 	; do
 		for variant in cli apache fpm zts; do
 			if [[ "$suite" = alpine* ]]; then

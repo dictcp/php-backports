@@ -187,6 +187,17 @@ ENV GPG_KEYS {{
 			"5A52880781F755608BF815FC910DEB46F53EA312",
 			"4267 0A7F E4D0 441C 8E46  3234 9E4F DC07 4A4E F02D"
 		],
+
+		"7.3": [
+			"CBAF 69F1 73A0 FEA4 B537  F470 D66C 9593 118B CCB6",
+			"F382 5282 6ACD 957E F380  D39F 2F79 56BC 5DA0 4B5D"
+		],
+
+		"7.2": [
+			"CBAF 69F1 73A0 FEA4 B537  F470 D66C 9593 118B CCB6",
+			"F382 5282 6ACD 957E F380  D39F 2F79 56BC 5DA0 4B5D"
+		],
+
 	}[env.version | rtrimstr("-rc")] // error("missing GPG keys for " + env.version)
 	| map(gsub(" "; ""))
 	| join(" ")
@@ -226,6 +237,11 @@ RUN set -eux; \
 		gpgconf --kill all; \
 		rm -rf "$GNUPGHOME"; \
 	fi; \
+	case "$PHP_URL" in \
+		*.tar.gz) \
+			mv php.tar.xz php.tar.gz \
+			;; \
+	esac; \
 	\
 {{ if is_alpine then ( -}}
 	apk del --no-network .fetch-deps
@@ -262,6 +278,8 @@ RUN set -eux; \
 			"sqlite-dev",
 			# https://github.com/docker-library/php/issues/888
 			"linux-headers",
+			# install dependencies for php 7.x
+			"bison",
 			# oniguruma is part of mbstring in php 7.4+
 			"oniguruma-dev"
 		else
@@ -275,6 +293,8 @@ RUN set -eux; \
 			"libssl-dev",
 			"libxml2-dev",
 			"zlib1g-dev",
+			# install dependencies for php 7.x
+			"bison",
 			# oniguruma is part of mbstring in php 7.4+
 			"libonig-dev"
 		end ] | sort[] | (
@@ -309,6 +329,7 @@ RUN set -eux; \
 		ln -sT "/usr/include/$debMultiarch/curl" /usr/local/include/curl; \
 	fi; \
 {{ ) end -}}
+    ./buildconf --force; \
 	./configure \
 		--build="$gnuArch" \
 		--with-config-file-path="$PHP_INI_DIR" \
