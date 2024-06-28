@@ -39,6 +39,8 @@ jobs:
           echo "$EOF" >> "$GITHUB_OUTPUT"
 
   test:
+    permissions:
+      packages: write
     needs: generate-jobs
     strategy: ${{ fromJson(needs.generate-jobs.outputs.strategy) }}
     name: ${{ matrix.name }}
@@ -57,3 +59,13 @@ jobs:
         run: ${{ matrix.runs.test }}
       - name: '"docker images"'
         run: ${{ matrix.runs.images }}
+      - name: Docker login and push
+        env:
+          DOCKER_USERNAME: ${{ github.actor }}
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ matrix.name }}
+        run: |
+          docker login ghcr.io -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker tag php-backports:$TAG_NAME ghcr.io/dictcp/php-backports:$TAG_NAME
+          docker push ghcr.io/dictcp/php-backports:$TAG_NAME
+
