@@ -11,11 +11,18 @@ Copyright (c) 1997-2018 The PHP Group
 Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
 ```
 
+## Available Tags
+
+- 7.2: `7.2.34-apache-bullseye`, `7.2.34-cli-bullseye`, `7.2.34-fpm-bullseye`, `7.2.34-zts-bullseye`
+- 7.4: `7.4.33-apache-bullseye`, `7.4.33-cli-bullseye`, `7.4.33-fpm-bullseye`, `7.4.33-zts-bullseye`
+
 ## Other LTS / backports attempts for EOL-ed PHP versions
 
 ### OSS Community
 - https://github.com/remicollet/php-src-security
 - https://github.com/shivammathur/php-src-backports
+- https://github.com/centminmod/centminmod/tree/master/patches/php
+- https://github.com/zboszor/meta-parallel-php/tree/main/recipes-php/php
 
 ### Distribution
 - Ubuntu
