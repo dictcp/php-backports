@@ -13,6 +13,7 @@ Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
 
 ## Available Tags
 
+- 7.0: `7.0.33-apache-bullseye`, `7.0.33-cli-bullseye`, `7.0.33-fpm-bullseye`, `7.0.33-zts-bullseye`
 - 7.2: `7.2.34-apache-bullseye`, `7.2.34-cli-bullseye`, `7.2.34-fpm-bullseye`, `7.2.34-zts-bullseye`
 - 7.4: `7.4.33-apache-bullseye`, `7.4.33-cli-bullseye`, `7.4.33-fpm-bullseye`, `7.4.33-zts-bullseye`
 
