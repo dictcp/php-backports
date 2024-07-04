@@ -198,6 +198,11 @@ ENV GPG_KEYS {{
 			"F382 5282 6ACD 957E F380  D39F 2F79 56BC 5DA0 4B5D"
 		],
 
+		"7.0": [
+			"CBAF 69F1 73A0 FEA4 B537  F470 D66C 9593 118B CCB6",
+			"F382 5282 6ACD 957E F380  D39F 2F79 56BC 5DA0 4B5D"
+		],
+
 	}[env.version | rtrimstr("-rc")] // error("missing GPG keys for " + env.version)
 	| map(gsub(" "; ""))
 	| join(" ")
@@ -352,10 +357,12 @@ RUN set -eux; \
 		--enable-mbstring \
 # --enable-mysqlnd is included here because it's harder to compile after the fact than extensions are (since it's a plugin for several extensions, not an extension in itself)
 		--enable-mysqlnd \
+{{ if [ "7.2", "7.4" ] | index(env.version | rtrimstr("-rc")) then ( -}}
 # https://wiki.php.net/rfc/argon2_password_hash
 		--with-password-argon2 \
 # https://wiki.php.net/rfc/libsodium
 		--with-sodium=shared \
+{{ ) else "" end -}}
 # always build against system sqlite3 (https://github.com/php/php-src/commit/6083a387a81dbbd66d6316a3a12a63f06d5f7109)
 		--with-pdo-sqlite=/usr \
 		--with-sqlite3=/usr \
@@ -482,8 +489,10 @@ RUN set -eux; \
 
 COPY docker-php-ext-* docker-php-entrypoint /usr/local/bin/
 
+{{ if [ "7.2", "7.4" ] | index(env.version | rtrimstr("-rc")) then ( -}}
 # sodium was built as a shared module (so that it can be replaced later if so desired), so let's enable it too (https://github.com/docker-library/php/issues/598)
 RUN docker-php-ext-enable sodium
+{{ ) else "" end -}}
 
 ENTRYPOINT ["docker-php-entrypoint"]
 {{ if env.variant == "apache" then ( -}}

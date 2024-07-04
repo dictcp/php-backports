@@ -1,4 +1,15 @@
 {
+  "7.0": {
+    "url": "https://github.com/remicollet/php-src-security/archive/refs/heads/PHP-7.0-security-backports.tar.gz",
+    "variants": [
+      "bullseye/cli",
+      "bullseye/apache",
+      "bullseye/fpm",
+      "bullseye/zts"
+    ],
+    "version": "7.0.33"
+  },
+  "7.0-rc": null,
   "7.2": {
     "url": "https://github.com/remicollet/php-src-security/archive/refs/heads/PHP-7.2-Security-backports.tar.gz",
     "variants": [
